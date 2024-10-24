@@ -1,5 +1,77 @@
-﻿<h3>GestionarLibros</h3>
+﻿@page "/gestionar-libros"
+
+<h3>Agregar un nuevo libro</h3>
+
+<!-- Agregar referencia al CSS -->
+<link href="~/css/StylesGestionar.css" rel="stylesheet" />
+
+<!-- Formulario para agregar libros -->
+<EditForm Model="@libro" OnValidSubmit="GuardarLibro">
+    <InputText id="titulo" @bind-Value="libro.Titulo" placeholder="Título del libro" />
+    <InputText id="autor" @bind-Value="libro.Autor" placeholder="Autor del libro" />
+    <button type="submit">Guardar</button>
+</EditForm>
+
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Header -->
+    <header class="header">
+        <input type="text" placeholder="Search book name, author, edition..." />
+        <div class="user-info">
+            <span>Alexander Mark</span>
+            <img src="images/user-avatar.png" alt="User Avatar">
+        </div>
+    </header>
+
+    <!-- Book section -->
+    <section class="book-section">
+        <h2>Keep the story going...</h2>
+        <p>Don’t let the story end just yet. Continue reading your last book and immerse yourself in the world of literature.</p>
+        <button class="start-reading-btn">Start reading</button>
+
+        <!-- Books Display -->
+        <div class="books-display">
+            <div class="book-card">
+                <img src="images/beauty-beast.jpg" alt="Beauty and the Beast">
+                <p>Beauty and the Beast: <br> <em>Disney</em></p>
+            </div>
+
+            <div class="book-card">
+                <img src="" alt="Señor Presidente">
+                <p>Fire and Blood: <br> <em>A Game of Thrones series</em></p>
+            </div>
+
+            <div class="book-card">
+                <img src="images/chronicles-narnia.jpg" alt="Chronicles of Narnia">
+                <p>The Chronicles of Narnia: <br> <em>C.S. Lewis</em></p>
+            </div>
+
+            <div class="book-card">
+                <img src="images/deadpool.jpg" alt="Deadpool Samurai">
+                <p>Deadpool Samurai: <br> <em>Marvel</em></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Got chance to check out the new collection of Harry Potter? It’s a must-read for any fan of the series, don’t miss out!</p>
+            <p class="books-count">04 / 60 books</p>
+        </footer>
+    </section>
+</main>
 
 @code {
+    private Libro libro = new Libro();
 
+    private void GuardarLibro()
+    {
+        // Lógica para guardar el libro
+        Console.WriteLine($"Libro guardado: {libro.Titulo}, {libro.Autor}");
+    }
+
+    public class Libro
+    {
+        public string Titulo { get; set; }
+        public string Autor { get; set; }
+    }
 }
